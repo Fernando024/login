@@ -1,0 +1,57 @@
+<div class="login-container">
+  <!-- Sección izquierda: Imagen con rectángulo informativo -->
+  <div class="image-container">
+    <div class="info-box">
+      <img src="assets/imagenes/icono-unam.png" class="box-icon" alt="Icono UNAM">
+      <span class="box-text">SERVICIO SOCIAL</span>
+      <img src="assets/imagenes/icono-iimas.png" class="box-icon-right" alt="Otro icono">
+    </div>
+    <img src="assets/imagenes/Login_imagen.png" alt="Login Image">
+  </div>
+
+  <!-- Sección derecha: Formulario -->
+  <div class="form-container">
+    <h1>¡Bienvenido!</h1>
+    
+    <form (ngSubmit)="onSubmit()">
+      <!-- Campo de correo electrónico -->
+      <div class="input-group">
+        <div class="input-field" [class.has-content]="email">
+          <img src="assets/imagenes/email-icono.png" class="input-icon" alt="Email">
+          <span class="input-label">Correo electrónico</span>
+          <input 
+            type="email" 
+            id="email" 
+            [(ngModel)]="email" 
+            name="email" 
+            (input)="onInput($event)"
+            required
+          >
+        </div>
+      </div>
+
+      <!-- Campo de contraseña -->
+      <div class="input-group">
+        <div class="input-field" [class.has-content]="password">
+          <img src="assets/imagenes/contraseña-icono.png" class="input-icon" alt="Contraseña">
+          <span class="input-label">Contraseña</span>
+          <input 
+            [type]="hide ? 'password' : 'text'" 
+            id="password" 
+            [(ngModel)]="password" 
+            name="password" 
+            (input)="onInput($event)"
+            required
+          >
+          <!-- Botón para mostrar/ocultar contraseña -->
+          <button type="button" class="toggle-password" (click)="hide = !hide">
+            <img *ngIf="hide" src="assets/imagenes/show.png" class="toggle-icon">
+            <img *ngIf="!hide" src="assets/imagenes/esconder.png" class="toggle-icon">
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="login-button">Iniciar sesión</button>
+    </form>
+  </div>
+</div>
