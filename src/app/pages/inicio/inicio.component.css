@@ -1,0 +1,99 @@
+
+/*formulario */
+.service-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; 
+}
+
+/*Boton*/
+.submit-btn {
+    align-self: center;
+    background-color: #121241;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    margin-top: -1.5rem; 
+    border: 2px solid #121241; /*Borde blanco */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+/*Titulo*/
+h1.form-title {
+    color: rgb(0, 0, 94);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    margin: -20px 0 1rem 30px; 
+    padding-top: 0;
+    position: relative;
+    top: -15px;
+}
+
+/* contenedor del formulario */
+.form-container {   
+    background-color: #c6ddff;
+    border-radius: 30px;
+    padding: 2rem;
+    margin: -25px 0 0 30px;
+    max-width: 700px;
+    min-height: 500px;
+
+}
+
+/* Area formulario */
+.form-group {
+    margin-bottom: 0.2rem;/*Separacion entre campos*/
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+}
+
+
+/* Placeholders en azul */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #2f306d;
+}
+
+/*Campo de informacion*/
+.form-group textarea {
+    min-height: 350px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 120px; /* Alineación vertical del texto */
+}
+
+.form-group textarea + .input-icon {
+    top: 15px; 
+    left: 15px; 
+    transform: none; 
+}
+
+/* icono */
+.input-icon {
+    left: 13px; /* Separa el icono un poco más a la izquierda */
+    position: absolute;
+    top: 16%;
+    width: 40px;
+    height: 30px;
+   
+}
+
+
+/* Asegurar espacio suficiente para el ícono */
+.form-group input,
+.form-group textarea {
+    padding: 12px 15px 12px 40px;
+    color: #1c1c72;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: white;
+    padding-left: 70px; /*Espacio entre icono y texto de los campos */
+    transition: all 0.3s ease;
+    outline: none; /* Quita el contorno predeterminado */
+    border: 2px solid #ffffff; /*Borde blanco */
+}
+

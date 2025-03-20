@@ -1,0 +1,47 @@
+
+<div class="layout-container">
+ 
+    <!-- Contenedor principal: Sidebar + Contenido -->
+    <div class="main-container">
+      <!-- Sidebar-->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <div class="header-content">
+            <img src="assets/imagenes/icono-unam.png" class="side-image left">
+            <span class="header-text">
+              SERVICIO<br>
+              SOCIAL
+          </span>
+            <img src="assets/imagenes/icono-iimas.png" class="side-image right">
+        </div>
+      </div>
+  
+        <ul class="nav-links">
+          <li>
+            <a routerLink="/inicio" routerLinkActive="active">
+                <img src="assets/imagenes/icono-inicio.png" class="nav-icon">
+                Inicio
+            </a>
+        </li>
+        <li>
+            <a routerLink="/registro-alumno" routerLinkActive="active">
+                <img src="assets/imagenes/icono-resgistro-alumno.png" class="nav-icon">
+                Registro de 
+                Alumnos
+            </a>
+        </li>
+        <li>
+            <a routerLink="/acerca-de" routerLinkActive="active">
+                <img src="assets/imagenes/icono-acerca-de.png" class="nav-icon">
+                Acerca de
+            </a>
+        </li>
+        </ul>
+      </nav>
+  
+      <!-- Contenido de la página -->
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
