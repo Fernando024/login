@@ -1,26 +1,136 @@
-<div class="content">
-    <h1 class="form-title">Envía la información de tu programa<br>de servicio social</h1>
-    
-    <div class="form-container">
-       
-        <form class="service-form">
-            <div class="form-group">
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    placeholder="Correo electrónico"
-                    required
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
-                >
-                <img src="assets/imagenes/email-icono.png" class="input-icon">
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Información del programa de servicio                                                                         social"></textarea>
-                <img src="assets/imagenes/icono-informacion.png" class="input-icon">
-            </div>
+<div class="form-wrapper">
+    <!-- Sección del formulario principal -->
+    <div class="content">
+        <h1 class="form-title">Envía la información de tu programa<br>de servicio social</h1>
+        
+        <div class="form-container">
+            <form class="service-form">
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Correo electrónico"
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <img src="assets/imagenes/email-icono.png" class="input-icon">
+                </div>
+                <div class="form-group">
+                    <textarea #programaTextarea 
+                            placeholder="Información del programa de servicio social"
+                            class="form-control"></textarea>
+                    <img src="assets/imagenes/icono-informacion.png" class="input-icon">
+                </div>
+                <button class="submit-btn">Enviar información</button>
+            </form>
+        </div>
+    </div>
+   <!-- Sección de usuario -->
+   <div class="form-text">
+    <div class="user-info-box">
+        <div class="user-info">
+          <h3>{{ userInfo?.name }}</h3>
+          <h3>Boleta {{ userInfo?.boleta}}</h3>
+        </div>
+        <img src="assets/imagenes/user-icono.png"class="user-image">
+    </div>
+
+    <!-- Sección de plantillas -->
+    <div class="form-text">
+        <div class="header-section">
+            <h2>Seleccione una <br>plantilla de información</h2>
+            <button class="btn-new-template" (click)="creatingNewTemplate = true" aria-label="Crear nueva plantilla">
+                <img src="assets/imagenes/agregar-icono.png" alt="Nueva Plantilla" class="new-template-icon">
+                <span class="add-template-text">Agregar plantillas</span>
+            </button>
             
-            <button class="submit-btn">Enviar información</button>
-        </form>
+        </div>
+        
+        <div class="info-boxes">
+            <div class="info-box" 
+                 *ngFor="let template of templates"
+                 (click)="loadTemplate(template.fullContent)"
+                 role="button"
+                 tabindex="0">
+                <img [src]="template.icon" class="info-icon" alt="Icono de plantilla">
+                <div class="template-content">
+                    <h3>{{ template.title }}</h3>
+                    <p>{{ template.shortText | limitWords:4 }}</p>
+                </div>
+                <div class="actions">
+                    <img [src]="template.editIcon" 
+                         class="edit-icon"
+                         (click)="editTemplate(template, $event)"
+                         alt="Editar plantilla"
+                         role="button">
+                    <img src="assets/imagenes/eliminar-icono.png" 
+                         class="delete-icon"
+                         (click)="deleteTemplate(template.id, $event)"
+                         alt="Eliminar plantilla"
+                         role="button">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal de edición -->
+<div class="edit-modal" *ngIf="editingTemplate">
+    <div class="modal-backdrop" (click)="editingTemplate = null"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Editar Plantilla</h3>
+            <button class="close-btn" (click)="editingTemplate = null" aria-label="Cerrar">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input type="text" 
+            [(ngModel)]="editedTitle" 
+            placeholder="Nombre de la plantilla"
+            class="title-input"
+            required>
+            
+            <textarea [(ngModel)]="editedContent" 
+                     placeholder="Contenido de la plantilla..."
+                     class="editor-textarea"
+                     required></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-cancel" (click)="editingTemplate = null">Cancelar</button>
+            <button class="btn btn-save" 
+                    (click)="saveTemplate()"
+                    [disabled]="!editedTitle || !editedContent">
+                Guardar Cambios
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de creacion -->
+<div class="edit-modal" *ngIf="creatingNewTemplate">
+    <div class="modal-backdrop" (click)="creatingNewTemplate = false"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Crear Plantilla</h3>
+            <button class="close-btn" (click)="creatingNewTemplate = false" aria-label="Cerrar">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input type="text" 
+                   [(ngModel)]="newTemplateTitle" 
+                   placeholder="Nombre de la plantilla"
+                   class="title-input"
+                   required>
+            
+            <textarea [(ngModel)]="newTemplateContent" 
+                     placeholder="Contenido de la plantilla..."
+                     class="editor-textarea"
+                     required></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-cancel" (click)="creatingNewTemplate = false">Cancelar</button>
+            <button class="btn btn-save" 
+                    (click)="createNewTemplate()"
+                    [disabled]="!newTemplateTitle || !newTemplateContent">
+                Crear Plantilla
+            </button>
+        </div>
     </div>
 </div>
